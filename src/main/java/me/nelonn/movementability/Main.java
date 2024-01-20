@@ -16,20 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.nelonn.movementitem;
+package me.nelonn.movementability;
 
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerSwapHandItemsEvent;
+import me.nelonn.coprolite.api.PluginContainer;
+import me.nelonn.coprolite.api.PluginInitializer;
+import me.nelonn.coprolite.paper.CoprolitePlugin;
 
-public class EventListener implements Listener {
+public class Main implements PluginInitializer {
+    public static final String ID = "movement-ability";
 
-    @EventHandler
-    private void on(PlayerSwapHandItemsEvent event) {
-        ServerPlayer player = PaperAdapter.adapt(event.getPlayer());
-        player.sendSystemMessage(Component.literal("PRESSED F"));
+    @Override
+    public void onInitialize(PluginContainer pluginContainer) {
+        CoprolitePlugin.ON_ENABLE.register(plugin -> {
+            plugin.getServer().getPluginManager().registerEvents(new EventListener(plugin), plugin);
+            plugin.getServer().getScheduler().runTaskTimer(plugin, Cooldowns::tick, 1, 1);
+        });
     }
-
 }

@@ -1,13 +1,10 @@
 {
   "schemaVersion": 0,
-  "id": "movement-item",
-  "name": "Movement Item",
+  "id": "movement-ability",
+  "name": "Movement Ability",
   "version": "${version}",
   "authors": [
     "Nelonn"
   ],
-  "entrypoint": "me.nelonn.movementitem.Main",
-  "mixins": [
-    "movement-item.mixins.json"
-  ]
+  "entrypoint": "me.nelonn.movementability.Main"
 }

@@ -16,19 +16,22 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.nelonn.movementitem;
+package me.nelonn.movementability.utility;
 
-import me.nelonn.coprolite.api.PluginContainer;
-import me.nelonn.coprolite.api.PluginInitializer;
-import me.nelonn.coprolite.paper.CoprolitePlugin;
+import net.minecraft.server.level.ServerPlayer;
+import org.bukkit.craftbukkit.v1_20_R3.entity.CraftPlayer;
+import org.bukkit.entity.HumanEntity;
+import org.jetbrains.annotations.Contract;
 
-public class Main implements PluginInitializer {
-    public static final String ID = "example-plugin";
+public final class PaperAdapter {
 
-    @Override
-    public void onInitialize(PluginContainer pluginContainer) {
-        CoprolitePlugin.ON_ENABLE.register(plugin -> {
-            plugin.getServer().getPluginManager().registerEvents(new EventListener(), plugin);
-        });
+    @Contract("null -> null; !null -> !null")
+    public static ServerPlayer adapt(HumanEntity player) {
+        if (player == null) return null;
+        return ((CraftPlayer) player).getHandle();
+    }
+
+    private PaperAdapter() {
+        throw new UnsupportedOperationException();
     }
 }

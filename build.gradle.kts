@@ -34,6 +34,10 @@ tasks.named("assemble").configure {
     dependsOn("reobfJar")
 }
 
+tasks.reobfJar {
+    remapperArgs.add("--mixin")
+}
+
 tasks.test {
     useJUnitPlatform()
 }

@@ -16,22 +16,23 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.nelonn.movementitem;
+package me.nelonn.movementability.utility;
 
-import net.minecraft.server.level.ServerPlayer;
-import org.bukkit.craftbukkit.v1_20_R3.entity.CraftPlayer;
-import org.bukkit.entity.HumanEntity;
-import org.jetbrains.annotations.Contract;
+public class DeltaTimer {
+    private double lastTickTime;
 
-public final class PaperAdapter {
-
-    @Contract("null -> null; !null -> !null")
-    public static ServerPlayer adapt(HumanEntity player) {
-        if (player == null) return null;
-        return ((CraftPlayer) player).getHandle();
+    public DeltaTimer() {
+        this.lastTickTime = getCurrentTime();
     }
 
-    private PaperAdapter() {
-        throw new UnsupportedOperationException();
+    private double getCurrentTime() {
+        return (double) System.currentTimeMillis() / 1000.0D;
+    }
+
+    public float tick() {
+        double current = getCurrentTime();
+        float deltaTime = (float) (current - this.lastTickTime);
+        this.lastTickTime = current;
+        return deltaTime;
     }
 }
