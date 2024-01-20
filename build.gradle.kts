@@ -1,6 +1,9 @@
+import org.cadixdev.gradle.licenser.LicenseExtension
+
 plugins {
     id("java")
     id("io.papermc.paperweight.userdev") version "1.5.5"
+    id("org.cadixdev.licenser") version "0.6.1"
 }
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -33,4 +36,9 @@ tasks.named("assemble").configure {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+configure<LicenseExtension> {
+    header(rootProject.file("HEADER"))
+    include("**/*.java")
 }

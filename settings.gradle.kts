@@ -1,2 +1,2 @@
-rootProject.name = "coprolite-example-plugin"
+rootProject.name = "movement-item"
 

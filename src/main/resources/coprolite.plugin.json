@@ -1,13 +1,13 @@
 {
   "schemaVersion": 0,
-  "id": "example-plugin",
-  "name": "Example Plugin",
+  "id": "movement-item",
+  "name": "Movement Item",
   "version": "${version}",
   "authors": [
-    "Anonymous"
+    "Nelonn"
   ],
-  "entrypoint": "com.example.plugin.Main",
+  "entrypoint": "me.nelonn.movementitem.Main",
   "mixins": [
-    "example-plugin.mixins.json"
+    "movement-item.mixins.json"
   ]
 }
