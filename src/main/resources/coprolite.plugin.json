@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 0,
+  "id": "example-plugin",
+  "name": "Example Plugin",
+  "version": "${version}",
+  "authors": [
+    "Anonymous"
+  ],
+  "entrypoint": "com.example.plugin.Main",
+  "mixins": [
+    "example-plugin.mixins.json"
+  ]
+}
